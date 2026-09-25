@@ -21,7 +21,8 @@
 ## Features
 
 ### iOS look and feel
-- iOS layouts: `123 · 🌐 · 😀 · space · return` bottom row, iOS-style 123 and #+= pages
+- iOS layouts: `123 · 😀 · space · return` bottom row, iOS-style 123 and #+= pages
+- iOS-style bar below the keys with the 🌐 language switch and a 🎤 voice input button (shown when a voice service is available)
 - iOS light and dark themes that follow the system, rounded keys with a subtle bottom shadow
 - iOS-like icons (shift, caps lock, delete, emoji, globe) drawn from scratch, and the Inter font
 - Key pop-up preview, haptic feedback, double-space period, auto-capitalization
@@ -35,7 +36,7 @@
 <img src="docs/screenshots/telex.png" alt="Telex typing" width="48%" align="right">
 
 - Built-in **Vietnamese (Telex)** layout; English and Vietnamese are enabled by default,
-  switch with the 🌐 key
+  switch with the 🌐 button below the keys
 - `tieengs vieetj` → `tiếng việt`, `dduwowcj` → `được`, `nguwowif` → `người`
 - Repeat a key to undo it: `ass` → `as`, `caaa` → `caa`
 - Choose the tone placement: new style (`hoà`, `thuỷ`) or old style (`hòa`, `thủy`)
