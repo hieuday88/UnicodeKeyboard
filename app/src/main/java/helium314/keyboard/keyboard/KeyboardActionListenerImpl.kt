@@ -8,6 +8,8 @@ import android.view.inputmethod.InputMethodSubtype
 import androidx.core.util.forEach
 import androidx.core.view.inputmethod.EditorInfoCompat
 import androidx.core.view.inputmethod.InputContentInfoCompat
+import helium314.keyboard.unicode.TextTranslator
+import helium314.keyboard.unicode.UnicodeEngine
 import helium314.keyboard.event.Event
 import helium314.keyboard.event.HangulEventDecoder
 import helium314.keyboard.event.HapticEvent
@@ -18,6 +20,7 @@ import helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyCode
 import helium314.keyboard.latin.AudioAndHapticFeedbackManager
 import helium314.keyboard.latin.EmojiAltPhysicalKeyDetector
 import helium314.keyboard.latin.LatinIME
+import helium314.keyboard.latin.R
 import helium314.keyboard.latin.RichInputMethodManager
 import helium314.keyboard.latin.common.Constants
 import helium314.keyboard.latin.common.InputPointers
@@ -106,6 +109,14 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
     override fun onCodeInput(primaryCode: Int, x: Int, y: Int, isKeyRepeat: Boolean) {
         when (primaryCode) {
             KeyCode.TOGGLE_AUTOCORRECT -> return settings.toggleAutoCorrect()
+            KeyCode.TOGGLE_UNICODE_MODE -> {
+                inputLogic.finishInput()
+                UnicodeEngine.toggleUnicode(latinIME.prefs())
+                val message = if (UnicodeEngine.unicodeActive) R.string.unicode_mode_on else R.string.unicode_mode_off
+                keyboardSwitcher.showToast(latinIME.getString(message), true)
+                return
+            }
+            KeyCode.TRANSLATE_TEXT -> return translateAtCursor()
             KeyCode.TOGGLE_INCOGNITO_MODE -> {
                 settings.toggleAlwaysIncognitoMode()
                 BackgroundGatheringCache.clear()
@@ -508,6 +519,7 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
     }
 
     companion object {
+        private const val MAX_TRANSLATE_CHARS = 2000
         private enum class MetaPressState {
             UNSET, // default state, not active
             SET, // enabled without onPressKey (e.g. in popup)
@@ -532,5 +544,38 @@ class KeyboardActionListenerImpl(private val latinIME: LatinIME, private val inp
         }
 
         private fun Int.isMetaLock() = this == KeyCode.CTRL_LOCK || this == KeyCode.ALT_LOCK || this == KeyCode.FN_LOCK || this == KeyCode.META_LOCK
+    }
+
+    /** Translates the selection, or all text before the cursor, between English and Vietnamese and replaces it. */
+    private fun translateAtCursor() {
+        inputLogic.finishInput()
+        val ic = latinIME.currentInputConnection ?: return
+        val selected = ic.getSelectedText(0)?.toString()
+        val source = if (!selected.isNullOrEmpty()) selected else ic.getTextBeforeCursor(MAX_TRANSLATE_CHARS, 0)?.toString().orEmpty()
+        if (source.isBlank()) {
+            keyboardSwitcher.showToast(latinIME.getString(R.string.unicode_translate_empty), true)
+            return
+        }
+        keyboardSwitcher.showToast(latinIME.getString(R.string.unicode_translate_working), true)
+        TextTranslator.translate(source) { result ->
+            result.onSuccess { translated ->
+                val conn = latinIME.currentInputConnection ?: return@onSuccess
+                if (!selected.isNullOrEmpty()) {
+                    if (conn.getSelectedText(0)?.toString() == selected) conn.commitText(translated, 1)
+                    else keyboardSwitcher.showToast(latinIME.getString(R.string.unicode_translate_changed), true)
+                    return@onSuccess
+                }
+                if (conn.getTextBeforeCursor(source.length, 0)?.toString() != source) {
+                    keyboardSwitcher.showToast(latinIME.getString(R.string.unicode_translate_changed), true)
+                    return@onSuccess
+                }
+                conn.beginBatchEdit()
+                conn.deleteSurroundingText(source.length, 0)
+                conn.commitText(translated, 1)
+                conn.endBatchEdit()
+            }.onFailure {
+                keyboardSwitcher.showToast(latinIME.getString(R.string.unicode_translate_failed, it.message ?: ""), false)
+            }
+        }
     }
 }

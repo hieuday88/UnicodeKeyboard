@@ -49,6 +49,8 @@ private constructor(val themeId: Int, @JvmField val mStyleId: Int) {
         const val STYLE_ROUNDED = "Rounded"
 
         // new themes that are just colors
+        const val THEME_IOS_LIGHT = "ios_light"
+        const val THEME_IOS_DARK = "ios_dark"
         const val THEME_LIGHT = "light"
         const val THEME_HOLO_WHITE = "holo_white"
         const val THEME_DARK = "dark"
@@ -66,6 +68,7 @@ private constructor(val themeId: Int, @JvmField val mStyleId: Int) {
         const val THEME_SAND = "sand"
         const val THEME_VIOLETTE = "violette"
         fun getAvailableDefaultColors(prefs: SharedPreferences, isNight: Boolean) = listOfNotNull(
+            if (!isNight) THEME_IOS_LIGHT else null, THEME_IOS_DARK,
             if (!isNight) THEME_LIGHT else null, THEME_DARK,
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) THEME_DYNAMIC else null,
             if (prefs.getString(Settings.PREF_THEME_STYLE, Defaults.PREF_THEME_STYLE) == STYLE_HOLO) THEME_HOLO_WHITE else null,
@@ -152,6 +155,30 @@ private constructor(val themeId: Int, @JvmField val mStyleId: Int) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) DynamicColors(context, themeStyle, hasBorders, backgroundImage)
                     else getThemeColors(THEME_LIGHT, themeStyle, context, prefs, isNight)
                 }
+                THEME_IOS_LIGHT -> DefaultColors(
+                    themeStyle,
+                    hasBorders,
+                    "#007AFF".toColorInt(),
+                    "#D1D3D9".toColorInt(),
+                    Color.WHITE,
+                    "#ABB0BA".toColorInt(),
+                    Color.WHITE,
+                    Color.BLACK,
+                    "#8A8A8E".toColorInt(),
+                    keyboardBackground = backgroundImage
+                )
+                THEME_IOS_DARK -> DefaultColors(
+                    themeStyle,
+                    hasBorders,
+                    "#0A84FF".toColorInt(),
+                    "#2B2B2B".toColorInt(),
+                    "#6B6B6B".toColorInt(),
+                    "#464646".toColorInt(),
+                    "#6B6B6B".toColorInt(),
+                    Color.WHITE,
+                    "#B0B0B0".toColorInt(),
+                    keyboardBackground = backgroundImage
+                )
                 THEME_LIGHT -> DefaultColors(
                     themeStyle,
                     hasBorders,

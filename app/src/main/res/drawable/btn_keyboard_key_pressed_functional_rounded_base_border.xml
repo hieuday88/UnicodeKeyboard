@@ -3,5 +3,5 @@
     android:shape="rectangle">
     <solid android:color="@color/key_background_normal_lxx_base_border" />
     <!-- Workaround to always round the functional key -->
-    <corners android:radius="500dp" />
+    <corners android:radius="6dp" />
 </shape>

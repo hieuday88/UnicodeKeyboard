@@ -32,30 +32,9 @@ public final class LanguageOnSpacebarUtils {
         // This utility class is not publicly instantiable.
     }
 
+    /** Always shows the iOS-style space label ("dấu cách" / "space"), whatever subtypes are enabled. */
     public static int getLanguageOnSpacebarFormatType(@NonNull final RichInputMethodSubtype subtype) {
-        if (!Settings.getValues().mSpaceBarText.isEmpty())
-            return FORMAT_TYPE_FULL_LOCALE;
-        if (subtype.isNoLanguage()) {
-            return FORMAT_TYPE_FULL_LOCALE;
-        }
-        // Only this subtype is enabled and equals to the system locale.
-        if (sEnabledSubtypes.size() < 2 && sIsSystemLanguageSameAsInputLanguage && Settings.getValues().mSecondaryLocales.isEmpty()) {
-            return FORMAT_TYPE_NONE;
-        }
-        final Locale locale = subtype.getLocale();
-        final String keyboardLanguage = locale.getLanguage();
-        final String keyboardLayout = subtype.getMainLayoutName();
-        int sameLanguageAndLayoutCount = 0;
-        for (final InputMethodSubtype ims : sEnabledSubtypes) {
-            final String language = SubtypeUtilsKt.locale(ims).getLanguage();
-            if (keyboardLanguage.equals(language) && keyboardLayout.equals(SubtypeUtilsKt.mainLayoutNameOrQwerty(ims))) {
-                sameLanguageAndLayoutCount++;
-            }
-        }
-        // Display full locale name only when there are multiple subtypes that have the same
-        // locale and keyboard layout. Otherwise displaying language name is enough.
-        return sameLanguageAndLayoutCount > 1 ? FORMAT_TYPE_FULL_LOCALE
-                : FORMAT_TYPE_LANGUAGE_ONLY;
+        return FORMAT_TYPE_FULL_LOCALE;
     }
 
     public static void setEnabledSubtypes(@NonNull final List<InputMethodSubtype> enabledSubtypes) {

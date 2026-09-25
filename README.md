@@ -1,10 +1,26 @@
+# Unicode Keyboard
+Bàn phím Android kiểu iOS cho người Việt, fork từ [HeliBoard](https://github.com/HeliBorg/HeliBoard) (GPL-3.0).
+Package: `com.hieuday88.unicode`.
+
+## Tính năng riêng
+- **Gõ Telex tiếng Việt** (subtype "Tiếng Việt (Telex)"), tự tắt trong ô mật khẩu/email/URL; tuỳ chọn bỏ dấu kiểu cũ (hòa) / mới (hoà).
+- **Chế độ Unicode**: đổi chữ/số sang ký tự trông giống (ɑ ϵ ᗅ…), bật/tắt bằng nút trên toolbar; tuỳ chỉnh từng ký tự, preset "Default 2" (small caps).
+- **Dịch Anh ↔ Việt offline** (ML Kit): dịch vùng chọn hoặc toàn bộ chữ trước con trỏ; tự nhận chiều dịch.
+- **Giao diện iOS**: theme iOS sáng/tối theo hệ thống, phím bo góc có bóng, hàng dưới `123 · 🌐 · 😀 · space · return`, trang 123 và #+= theo iOS, haptic, giữ phím ra dấu, double-space ra dấu chấm, vuốt space di con trỏ.
+
+Cài đặt riêng nằm ở mục **Unicode Keyboard** trong màn hình cài đặt.
+
+## Build
+```
+./gradlew assembleRelease   # hoặc assembleDebugNoMinify
+```
+Cần JDK 17+ và Android SDK (compileSdk 37, NDK 28).
+
+---
+Phần dưới là README gốc của HeliBoard.
+
 # HeliBoard
 HeliBoard is a privacy-conscious and customizable open-source keyboard, based on AOSP / OpenBoard.
-Does not use internet permission, and thus is 100% offline.
-
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/helium314.keyboard/)
-[<img src="https://user-images.githubusercontent.com/663460/26973090-f8fdc986-4d14-11e7-995a-e7c5e79ed925.png" alt="Get APK from GitHub" height="80">](https://github.com/HeliBorg/HeliBoard/releases/latest)
-[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height="80">](https://apt.izzysoft.de/fdroid/index/apk/helium314.keyboard)
 
 ## Table of Contents
 

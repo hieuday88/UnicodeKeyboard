@@ -157,6 +157,8 @@ class KeyboardIconsSet private constructor() {
                     ToolbarKey.PAGE_END -> R.drawable.ic_page_end
                     ToolbarKey.SPLIT -> R.drawable.ic_ime_switcher
                     ToolbarKey.BACKGROUND_GATHERING -> R.drawable.ic_settings_gesture
+                    ToolbarKey.UNICODE -> R.drawable.ic_unicode_mode
+                    ToolbarKey.TRANSLATE -> R.drawable.ic_translate_text
                 })
             }
         } }
@@ -221,15 +223,17 @@ class KeyboardIconsSet private constructor() {
                     ToolbarKey.PAGE_END -> R.drawable.ic_page_end
                     ToolbarKey.SPLIT -> R.drawable.ic_ime_switcher
                     ToolbarKey.BACKGROUND_GATHERING -> R.drawable.ic_settings_gesture
+                    ToolbarKey.UNICODE -> R.drawable.ic_unicode_mode
+                    ToolbarKey.TRANSLATE -> R.drawable.ic_translate_text
                 })
             }
         } }
 
         private val keyboardIconsRounded by lazy { hashMapOf(
-            NAME_SHIFT_KEY to                   R.drawable.sym_keyboard_shift_rounded,
-            NAME_SHIFT_KEY_SHIFTED to           R.drawable.sym_keyboard_shift_rounded,
-            NAME_SHIFT_KEY_LOCKED to            R.drawable.sym_keyboard_shift_lock_rounded,
-            NAME_DELETE_KEY to                  R.drawable.sym_keyboard_delete_rounded,
+            NAME_SHIFT_KEY to                   R.drawable.ic_ios_shift,
+            NAME_SHIFT_KEY_SHIFTED to           R.drawable.ic_ios_shift_filled,
+            NAME_SHIFT_KEY_LOCKED to            R.drawable.ic_ios_shift_lock,
+            NAME_DELETE_KEY to                  R.drawable.ic_ios_delete,
 //            NAME_SPACE_KEY to                   null,
             NAME_ENTER_KEY to                   R.drawable.sym_keyboard_return_rounded,
             NAME_GO_KEY to                      R.drawable.sym_keyboard_go_rounded,
@@ -241,7 +245,7 @@ class KeyboardIconsSet private constructor() {
             NAME_TAB_KEY to                     R.drawable.sym_keyboard_tab_rounded,
             NAME_SPACE_KEY_FOR_NUMBER_LAYOUT to R.drawable.sym_keyboard_space_rounded,
             NAME_SHORTCUT_KEY_DISABLED to       R.drawable.sym_keyboard_voice_off_rounded,
-            NAME_LANGUAGE_SWITCH_KEY to         R.drawable.sym_keyboard_language_switch_lxx,
+            NAME_LANGUAGE_SWITCH_KEY to         R.drawable.ic_ios_globe,
             NAME_ZWNJ_KEY to                    R.drawable.sym_keyboard_zwnj_lxx,
             NAME_ZWJ_KEY to                     R.drawable.sym_keyboard_zwj_lxx,
             NAME_STOP_ONEHANDED_KEY to          R.drawable.sym_keyboard_stop_onehanded_rounded,
@@ -270,7 +274,7 @@ class KeyboardIconsSet private constructor() {
                     ToolbarKey.AUTOCORRECT -> R.drawable.ic_autocorrect_rounded
                     ToolbarKey.CLEAR_CLIPBOARD -> R.drawable.sym_keyboard_clear_clipboard_rounded
                     ToolbarKey.CLOSE_HISTORY -> R.drawable.ic_close_rounded
-                    ToolbarKey.EMOJI -> R.drawable.sym_keyboard_smiley_rounded
+                    ToolbarKey.EMOJI -> R.drawable.ic_ios_emoji
                     ToolbarKey.LEFT -> R.drawable.ic_dpad_left_rounded
                     ToolbarKey.RIGHT -> R.drawable.ic_dpad_right_rounded
                     ToolbarKey.UP -> R.drawable.ic_dpad_up_rounded
@@ -285,6 +289,8 @@ class KeyboardIconsSet private constructor() {
                     ToolbarKey.PAGE_END -> R.drawable.ic_page_end_rounded
                     ToolbarKey.SPLIT -> R.drawable.ic_ime_switcher
                     ToolbarKey.BACKGROUND_GATHERING -> R.drawable.ic_settings_gesture
+                    ToolbarKey.UNICODE -> R.drawable.ic_unicode_mode
+                    ToolbarKey.TRANSLATE -> R.drawable.ic_translate_text
                 })
             }
         } }

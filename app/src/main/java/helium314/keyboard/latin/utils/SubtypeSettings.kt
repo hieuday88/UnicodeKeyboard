@@ -230,6 +230,10 @@ object SubtypeSettings {
         } else {
             systemSubtypes.addAll(subtypes)
         }
+        listOf(Locale.forLanguageTag("vi"), Locale.US).forEach { locale ->
+            val subtype = resourceSubtypesByLocale[locale]?.firstOrNull() ?: return@forEach
+            if (systemSubtypes.none { it.locale() == locale }) systemSubtypes.add(subtype)
+        }
         return systemSubtypes
     }
 

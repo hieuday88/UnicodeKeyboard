@@ -1171,12 +1171,12 @@
         android:isAsciiCapable="true"
     />
     <subtype android:icon="@drawable/ic_ime_switcher"
-        android:label="@string/subtype_generic"
+        android:label="@string/subtype_vi_telex"
         android:subtypeId="0x93972eee"
         android:imeSubtypeLocale="vi"
         android:languageTag="vi"
         android:imeSubtypeMode="keyboard"
-        android:imeSubtypeExtraValue="AsciiCapable,EmojiCapable"
+        android:imeSubtypeExtraValue="KeyboardLayoutSet=MAIN:qwerty,CombiningRules=vi_telex,AsciiCapable,EmojiCapable"
         android:isAsciiCapable="true"
     />
     <subtype android:icon="@drawable/ic_ime_switcher"

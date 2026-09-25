@@ -20,12 +20,12 @@ class LocaleKeyboardInfos(dataStream: InputStream?, locale: Locale) {
     private val popupKeys = hashMapOf<String, MutableCollection<String>>()
     private val priorityPopupKeys = hashMapOf<String, MutableCollection<String>>()
     private val extraKeys = Array<MutableList<KeyData>?>(5) { null }
-    var labelSymbol = "\\?123"
+    var labelSymbol = "123"
         private set
     val labelSymbolInNumpad = "!?#"
     var labelAlphabet = "ABC"
         private set
-    private var labelShiftSymbol = "= \\\\ <"
+    private var labelShiftSymbol = "#+="
     private var labelShiftSymbolTablet = "~ [ <"
     var labelComma = ","
         private set

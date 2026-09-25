@@ -1,0 +1,207 @@
+[
+ [
+  {
+   "label": "["
+  },
+  {
+   "label": "]"
+  },
+  {
+   "label": "{"
+  },
+  {
+   "label": "}"
+  },
+  {
+   "label": "#"
+  },
+  {
+   "label": "%",
+   "popup": {
+    "relevant": [
+     {
+      "label": "‰"
+     }
+    ]
+   }
+  },
+  {
+   "label": "^"
+  },
+  {
+   "label": "*",
+   "popup": {
+    "relevant": [
+     {
+      "label": "†"
+     },
+     {
+      "label": "‡"
+     },
+     {
+      "label": "★"
+     }
+    ]
+   }
+  },
+  {
+   "label": "+",
+   "popup": {
+    "relevant": [
+     {
+      "label": "±"
+     }
+    ]
+   }
+  },
+  {
+   "label": "=",
+   "popup": {
+    "relevant": [
+     {
+      "label": "≠"
+     },
+     {
+      "label": "≈"
+     },
+     {
+      "label": "∞"
+     }
+    ]
+   }
+  }
+ ],
+ [
+  {
+   "label": "_"
+  },
+  {
+   "label": "\\"
+  },
+  {
+   "label": "|"
+  },
+  {
+   "label": "~"
+  },
+  {
+   "label": "<",
+   "popup": {
+    "relevant": [
+     {
+      "label": "‹"
+     },
+     {
+      "label": "≤"
+     },
+     {
+      "label": "«"
+     }
+    ]
+   }
+  },
+  {
+   "label": ">",
+   "popup": {
+    "relevant": [
+     {
+      "label": "›"
+     },
+     {
+      "label": "≥"
+     },
+     {
+      "label": "»"
+     }
+    ]
+   }
+  },
+  {
+   "label": "$"
+  },
+  {
+   "label": "¥"
+  },
+  {
+   "label": "€",
+   "popup": {
+    "relevant": [
+     {
+      "label": "£"
+     }
+    ]
+   }
+  },
+  {
+   "label": "•",
+   "popup": {
+    "relevant": [
+     {
+      "label": "♪"
+     },
+     {
+      "label": "♥"
+     },
+     {
+      "label": "♠"
+     },
+     {
+      "label": "♦"
+     },
+     {
+      "label": "♣"
+     }
+    ]
+   }
+  }
+ ],
+ [
+  {
+   "label": ".",
+   "width": 0.148
+  },
+  {
+   "label": ",",
+   "width": 0.148
+  },
+  {
+   "label": "?",
+   "popup": {
+    "relevant": [
+     {
+      "label": "¿"
+     }
+    ]
+   },
+   "width": 0.148
+  },
+  {
+   "label": "!",
+   "popup": {
+    "relevant": [
+     {
+      "label": "¡"
+     }
+    ]
+   },
+   "width": 0.148
+  },
+  {
+   "label": "'",
+   "popup": {
+    "relevant": [
+     {
+      "label": "‘"
+     },
+     {
+      "label": "’"
+     },
+     {
+      "label": "`"
+     }
+    ]
+   },
+   "width": 0.148
+  }
+ ]
+]

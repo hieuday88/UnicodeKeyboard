@@ -1,25 +1,22 @@
 [
   [
-    { "label": "shift", "width": 0.15 },
+    { "label": "shift", "width": 0.13 },
     { "type": "placeholder" },
-    { "label": "delete", "width": 0.15 }
+    { "label": "delete", "width": 0.13 }
   ],
   [
-    { "label": "symbol_alpha", "width": 0.15 },
+    { "label": "symbol_alpha", "width": 0.13 },
+    { "$": "keyboard_state_selector", "languageKeyEnabled": { "$": "keyboard_state_selector", "alphabet": { "label": "language_switch", "width": 0.11 }}},
+    { "$": "keyboard_state_selector", "emojiKeyEnabled": { "label": "emoji", "width": 0.11 }},
     { "$": "variation_selector",
-      "default":  { "label": "comma", "labelFlags": 1073741824 },
-      "email":    { "label": "@", "labelFlags": 1073741824, "groupId": 1, "type": "function" },
-      "uri":      { "label": "/", "labelFlags": 1073741824, "groupId": 1, "type": "function" }
+      "email": { "label": "@", "labelFlags": 1073741824, "groupId": 1, "type": "function" },
+      "uri":   { "label": "/", "labelFlags": 1073741824, "groupId": 1, "type": "function" }
     },
-    { "$": "keyboard_state_selector", "languageKeyEnabled": { "$": "keyboard_state_selector", "alphabet": { "label": "language_switch" }}},
-    { "$": "keyboard_state_selector", "emojiKeyEnabled": { "$": "keyboard_state_selector", "alphabet": { "label": "emoji" }}},
-    { "$": "keyboard_state_selector", "symbols": { "label": "numpad" } },
     { "label": "space" },
-    { "$": "keyboard_state_selector",
-      "symbols": { "$": "keyboard_state_selector", "dpadKeyEnabled": { "label": "dpad" } },
-      "dpad": { "label": "symbol" }
+    { "$": "variation_selector",
+      "email": { "label": "period", "labelFlags": 1073741824 },
+      "uri":   { "label": "period", "labelFlags": 1073741824 }
     },
-    { "label": "period", "labelFlags": 1073741824 },
-    { "label": "action", "width": 0.15, "labelFlags": 1073741824 }
+    { "label": "Nhập", "code": 10, "type": "function", "width": 0.24, "labelFlags": 65536 }
   ]
 ]

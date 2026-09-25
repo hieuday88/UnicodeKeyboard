@@ -816,12 +816,10 @@ public final class MainKeyboardView extends KeyboardView implements DrawingProxy
         final String spaceText;
         if (!customText.isEmpty()) {
             spaceText = customText;
-        } else if (DebugFlags.DEBUG_ENABLED) {
-            final String l = KeyboardSwitcher.getInstance().getLocaleAndConfidenceInfo();
-            spaceText = l != null ? l : layoutLanguageOnSpacebar(paint, keyboard.mId.getSubtype(), width);
+        } else {
+            spaceText = getContext().getString("vi".equals(keyboard.mId.getSubtype().getLocale().getLanguage())
+                    ? R.string.space_label_vi : R.string.space_label_en);
         }
-        else
-            spaceText = layoutLanguageOnSpacebar(paint, keyboard.mId.getSubtype(), width);
         paint.setTypeface(KeyboardTypeface.resolve(spaceText, Typeface.DEFAULT));
         // Draw language text with shadow
         final float descent = paint.descent();

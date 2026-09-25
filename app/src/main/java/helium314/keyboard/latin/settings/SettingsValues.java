@@ -6,6 +6,9 @@
 
 package helium314.keyboard.latin.settings;
 
+import helium314.keyboard.unicode.UnicodeEngine;
+import helium314.keyboard.unicode.TelexEngine;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -220,8 +223,11 @@ public class SettingsValues {
                 && inputAttributes.mIsGeneralTextInput;
         mBlockPotentiallyOffensive = prefs.getBoolean(Settings.PREF_BLOCK_POTENTIALLY_OFFENSIVE, Defaults.PREF_BLOCK_POTENTIALLY_OFFENSIVE);
         mUrlDetectionEnabled = prefs.getBoolean(Settings.PREF_URL_DETECTION, Defaults.PREF_URL_DETECTION);
+        UnicodeEngine.INSTANCE.load(prefs);
+        TelexEngine.INSTANCE.setOldToneStyle(prefs.getBoolean(Settings.PREF_TELEX_OLD_TONE_STYLE, false));
         mAutoCorrectionEnabledPerUserSettings = prefs.getBoolean(Settings.PREF_AUTO_CORRECTION, Defaults.PREF_AUTO_CORRECTION);
         mAutoCorrectEnabled = mAutoCorrectionEnabledPerUserSettings
+                && !UnicodeEngine.INSTANCE.getUnicodeActive()
                 && (mInputAttributes.mInputTypeShouldAutoCorrect || prefs.getBoolean(Settings.PREF_MORE_AUTO_CORRECTION, Defaults.PREF_MORE_AUTO_CORRECTION))
                 && (mUrlDetectionEnabled || !InputTypeUtils.isUriOrEmailType(mInputAttributes.mInputType));
         mCenterSuggestionTextToEnter = prefs.getBoolean(Settings.PREF_CENTER_SUGGESTION_TEXT_TO_ENTER, Defaults.PREF_CENTER_SUGGESTION_TEXT_TO_ENTER);

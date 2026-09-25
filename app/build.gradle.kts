@@ -1,3 +1,4 @@
+import java.util.Properties
 import com.android.build.api.variant.ApplicationVariant
 
 plugins {
@@ -10,11 +11,11 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "helium314.keyboard"
+        applicationId = "com.hieuday88.unicode"
         minSdk = 21
         targetSdk = 37
-        versionCode = 4101
-        versionName = "4.1"
+        versionCode = 3000
+        versionName = "3.0.0"
         ndk {
             abiFilters.clear()
             abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
@@ -22,8 +23,20 @@ android {
         proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
 
+    val signingProps = rootProject.file("../signing/keystore.properties")
+    if (signingProps.exists()) {
+        val props = Properties().apply { signingProps.inputStream().use { load(it) } }
+        signingConfigs.create("release") {
+            storeFile = File(signingProps.parentFile, props.getProperty("storeFile"))
+            storePassword = props.getProperty("storePassword")
+            keyAlias = props.getProperty("keyAlias")
+            keyPassword = props.getProperty("keyPassword")
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.findByName("release")
             isMinifyEnabled = true
             isShrinkResources = false
             isDebuggable = false
@@ -65,7 +78,7 @@ android {
             }
             variant.outputs.forEach { output ->
                 if (output is com.android.build.api.variant.impl.VariantOutputImpl) {
-                    output.outputFileName = "HeliBoard_${defaultConfig.versionName}-${variant.buildType}.apk"
+                    output.outputFileName = "UnicodeKeyboard_${defaultConfig.versionName}-${variant.buildType}.apk"
                 }
             }
         }
@@ -120,6 +133,9 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.4.0")
     implementation("androidx.autofill:autofill:1.3.0")
     implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    // offline English <-> Vietnamese translation
+    implementation("com.google.mlkit:translate:17.0.3")
 
     // kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
