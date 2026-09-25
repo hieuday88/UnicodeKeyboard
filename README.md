@@ -1,86 +1,115 @@
 <p align="center">
-  <img src="unicode_keyboard_icon_512.png" alt="Unicode Keyboard icon" width="128">
+  <img src="unicode_keyboard_icon_512.png" alt="Unicode Keyboard icon" width="120">
 </p>
 
-# Unicode Keyboard
-
-An iOS-style Android keyboard for Vietnamese and English, with built-in Telex typing, a look-alike
-"Unicode" character mode and offline English ↔ Vietnamese translation.
-
-It is a fork of [HeliBoard](https://github.com/HeliBorg/HeliBoard) (itself based on AOSP / OpenBoard) and the
-successor of the CMkey keyboard.
+<h1 align="center">Unicode Keyboard</h1>
 
 <p align="center">
-  <img src="docs/screenshots/keyboard_vi.png" alt="Vietnamese keyboard" width="45%">
-  <img src="docs/screenshots/keyboard_en.png" alt="English keyboard" width="45%">
+  An iOS-style Android keyboard for English and Vietnamese, with Telex typing,<br>
+  a look-alike Unicode character mode and offline English ↔ Vietnamese translation.
+</p>
+
+<p align="center">
+  <a href="https://github.com/hieuday88/UnicodeKeyboard/releases/latest"><b>Download the latest APK</b></a>
+</p>
+
+<p align="center">
+  <img src="docs/screenshots/keyboard_en.png" alt="English keyboard" width="48%">
+  <img src="docs/screenshots/symbols.png" alt="Numbers and symbols" width="48%">
 </p>
 
 ## Features
 
+### iOS look and feel
+- iOS layouts: `123 · 🌐 · 😀 · space · return` bottom row, iOS-style 123 and #+= pages
+- iOS light and dark themes that follow the system, rounded keys with a subtle bottom shadow
+- iOS-like icons (shift, caps lock, delete, emoji, globe) drawn from scratch, and the Inter font
+- Key pop-up preview, haptic feedback, double-space period, auto-capitalization
+- Long-press for accents (`a` → `à á ả ã ạ ă â …`), swipe on space to move the cursor,
+  swipe on delete to select text
+- The interface is in English by default and follows the phone language
+  (a Vietnamese translation is included)
+
 ### Vietnamese Telex
-- "Tiếng Việt (Telex)" layout: `tieengs vieetj` → `tiếng việt`, `dduwowcj` → `được`, `nguwowif` → `người`
-- Double a tone or hook key to undo it (`ass` → `as`, `caaa` → `caa`)
-- Tone placement option: new style (`hoà`, `thuỷ`) or old style (`hòa`, `thủy`)
-- Automatically disabled in password, email and URL fields
-- Vietnamese and English layouts are enabled by default; switch with the 🌐 key
+
+<img src="docs/screenshots/telex.png" alt="Telex typing" width="48%" align="right">
+
+- Built-in **Vietnamese (Telex)** layout; English and Vietnamese are enabled by default,
+  switch with the 🌐 key
+- `tieengs vieetj` → `tiếng việt`, `dduwowcj` → `được`, `nguwowif` → `người`
+- Repeat a key to undo it: `ass` → `as`, `caaa` → `caa`
+- Choose the tone placement: new style (`hoà`, `thuỷ`) or old style (`hòa`, `thủy`)
+- Automatically turned off in password, email and URL fields
+
+<br clear="right">
 
 ### Unicode mode
-- Replaces letters and digits with look-alike Unicode characters while you type
-  (`hello` → `ҥϵℓℓσ`), handy for game names and chats
-- Toggle with the ⚡ button on the toolbar (off by default); auto-correction is paused while it is on
-- Per-character customization with a catalog of variants for every letter, a free-text override,
-  a "Default 2" preset (small caps) and a reset button
+
+<img src="docs/screenshots/unicode_mode.png" alt="Unicode mode" width="48%" align="right">
+
+- Types look-alike Unicode characters instead of letters and digits:
+  `hello world` → `Ңϵℓℓσ Ԝσʀℓᑯ`
+- Toggle it with the ⚡ button on the toolbar (off by default);
+  auto-correction is paused while it is on
+- Customize every character: pick from a catalog of variants, enter any text,
+  load the "Default 2" preset (small caps) or reset to defaults
+
+<br clear="right">
 
 ### Offline translation
-- 文A button on the toolbar translates the selection, or all text before the cursor, and replaces it
-- Direction is detected automatically: text with Vietnamese letters is translated to English,
+- The 文A button on the toolbar translates the selected text, or all text before the cursor, and replaces it
+- The direction is detected automatically: text with Vietnamese letters is translated to English,
   anything else to Vietnamese
-- Uses on-device Google ML Kit models (~30 MB, downloaded on first use; manage them in settings)
-
-### iOS look and feel
-- iOS layouts: `123 · 🌐 · 😀 · space · return` bottom row, iOS 123 and #+= symbol pages
-- iOS light and dark themes that follow the system, rounded keys with a bottom shadow
-- Self-drawn iOS-like icons (shift, caps lock, delete, emoji, globe) and the Inter font
-- Space label "dấu cách" / "space" depending on the layout, "Nhập" return key
-- Key pop-up preview, haptic feedback, double-space period, auto-capitalization,
-  long-press accents (`a` → `à á ả ã ạ ă â…`), swipe on space to move the cursor, swipe on delete to select
+- Runs on the device with Google ML Kit; the models (~30 MB) are downloaded on first use
+  and can be removed in settings
 
 ### Inherited from HeliBoard
-Suggestions and auto-correction with dictionaries, clipboard history, emoji palette, one-handed and split
-modes, custom layouts and colors, backup and restore, no ads and no tracking.
+Word suggestions and auto-correction, clipboard history, emoji palette, one-handed and split modes,
+custom layouts and colors, backup and restore. No ads, no tracking.
 
-<p align="center">
-  <img src="docs/screenshots/settings.png" alt="Settings" width="70%">
-</p>
+## Installation
+
+1. Download `UnicodeKeyboard_<version>-release.apk` from the [releases page](https://github.com/hieuday88/UnicodeKeyboard/releases)
+   and install it (Android 5.0 or newer).
+2. Open **Unicode Keyboard** and follow the setup steps to enable it and select it as your keyboard.
+3. Add or remove languages under **Languages & Layouts**.
 
 ## Settings
 
-Open the app (or ⚙ on the keyboard toolbar) → **Unicode Keyboard**:
+<p align="center">
+  <img src="docs/screenshots/settings.png" alt="Settings" width="80%">
+</p>
+
+Open the app, or tap ⚙ on the keyboard toolbar, then **Unicode Keyboard**:
 
 | Setting | Description |
 |---|---|
 | Unicode mode | Same as the ⚡ toolbar button |
 | Old tone style | `hòa` instead of `hoà` |
 | Translate EN ↔ VI | Download or delete the offline translation models |
-| Unicode character customization | Pick a variant for each character, load "Default 2" or reset |
+| Unicode character customization | Choose a replacement for each character, load "Default 2" or reset |
 
-A custom font (for example a font you own) can be selected under **Appearance → Custom font**.
+The toolbar (the `>` button above the keys) holds Unicode mode, translation, clipboard, settings,
+undo/redo and text editing shortcuts. Its content can be changed under **Toolbar**.
 
-## Build
+A different font can be used under **Appearance → Custom font**.
 
-Requirements: JDK 17+ (the JBR bundled with Android Studio works) and the Android SDK
-(compileSdk 37, NDK 28 — Gradle downloads missing components).
+## Building from source
+
+Requirements: JDK 17 or newer (the JBR bundled with Android Studio works) and the Android SDK.
+Gradle downloads the missing SDK platform (compileSdk 37) and NDK automatically.
 
 ```sh
-./gradlew assembleDebugNoMinify   # fast debug build
+./gradlew assembleDebugNoMinify   # quick debug build
 ./gradlew assembleRelease         # minified release build
-./gradlew testDebugUnitTest --tests "helium314.keyboard.unicode.*"
+./gradlew testDebugUnitTest --tests "helium314.keyboard.unicode.*"   # Telex tests
 ```
 
-APKs are written to `app/build/outputs/apk/<variant>/UnicodeKeyboard_<version>-<variant>.apk`.
+The APKs are written to `app/build/outputs/apk/<variant>/UnicodeKeyboard_<version>-<variant>.apk`.
 
-### Release signing
-`assembleRelease` signs the APK when `../signing/keystore.properties` exists next to the repository folder:
+### Signing release builds
+`assembleRelease` signs the APK when a `signing/keystore.properties` file exists **next to** the repository folder
+(`../signing/keystore.properties`):
 
 ```properties
 storeFile=unicode-keyboard-release.jks
@@ -89,22 +118,23 @@ keyAlias=unicodekeyboard
 keyPassword=...
 ```
 
-Keep the keystore out of the repository and back it up: updates must be signed with the same key.
+Never commit the keystore, and keep a backup: every update must be signed with the same key.
 
-## Project layout
+## Project structure
 
 | Path | Content |
 |---|---|
 | `app/src/main/java/helium314/keyboard/unicode/` | Telex engine, Unicode mode engine, character catalog, translator |
-| `app/src/main/java/helium314/keyboard/event/TelexCombiner.kt` | Hooks Telex into the input pipeline |
+| `app/src/main/java/helium314/keyboard/event/TelexCombiner.kt` | Connects Telex to the input pipeline |
 | `app/src/main/java/helium314/keyboard/settings/screens/UnicodeKeyboardScreen.kt` | Unicode Keyboard settings screen |
-| `app/src/main/assets/layouts/` | iOS-style functional and symbol layouts |
+| `app/src/main/assets/layouts/` | iOS-style bottom row and symbol layouts |
+| `app/src/main/res/values/unicode_keyboard_strings.xml` | English strings (Vietnamese in `values-vi/`) |
 | `app/src/test/java/helium314/keyboard/unicode/` | Telex unit tests |
 
 ## License
 
-Unicode Keyboard is licensed under the [GNU General Public License v3.0](LICENSE), like HeliBoard.
-Parts inherited from AOSP are under the [Apache License 2.0](LICENSE-Apache-2.0).
+Unicode Keyboard is released under the [GNU General Public License v3.0](LICENSE), like HeliBoard.
+Code inherited from AOSP is licensed under the [Apache License 2.0](LICENSE-Apache-2.0).
 
 The bundled [Inter](https://github.com/rsms/inter) font is licensed under the
 [SIL Open Font License 1.1](INTER_FONT_LICENSE.txt).
@@ -112,6 +142,7 @@ Apple's SF fonts and SF Symbols are **not** included; the iOS-like icons are ori
 
 ## Credits
 
-- [HeliBoard](https://github.com/HeliBorg/HeliBoard) and its contributors, [OpenBoard](https://github.com/openboard-team/openboard) and AOSP
+- [HeliBoard](https://github.com/HeliBorg/HeliBoard) and its contributors,
+  [OpenBoard](https://github.com/openboard-team/openboard) and the AOSP keyboard
 - [Inter](https://rsms.me/inter/) by Rasmus Andersson
 - [Google ML Kit](https://developers.google.com/ml-kit/language/translation) for on-device translation

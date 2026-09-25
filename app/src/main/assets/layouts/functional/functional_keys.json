@@ -17,6 +17,6 @@
       "email": { "label": "period", "labelFlags": 1073741824 },
       "uri":   { "label": "period", "labelFlags": 1073741824 }
     },
-    { "label": "Nhập", "code": 10, "type": "function", "width": 0.24, "labelFlags": 65536 }
+    { "label": "ios_return", "code": 10, "type": "function", "width": 0.24, "labelFlags": 65536 }
   ]
 ]

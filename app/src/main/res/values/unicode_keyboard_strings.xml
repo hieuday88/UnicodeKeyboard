@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="unicode">Chế độ Unicode</string>
-    <string name="unicode_mode">Chế độ Unicode</string>
-    <string name="translate">Dịch Anh ↔ Việt</string>
-    <string name="unicode_mode_on">Unicode: BẬT</string>
-    <string name="unicode_mode_off">Unicode: TẮT</string>
-    <string name="unicode_translate_empty">Không có chữ để dịch</string>
-    <string name="unicode_translate_working">Đang dịch…</string>
-    <string name="unicode_translate_changed">Nội dung đã thay đổi, huỷ dịch</string>
-    <string name="unicode_translate_failed">Dịch lỗi: %s</string>
+    <string name="unicode">Unicode mode</string>
+    <string name="unicode_mode">Unicode mode</string>
+    <string name="translate">Translate EN ↔ VI</string>
+    <string name="unicode_mode_on">Unicode mode: ON</string>
+    <string name="unicode_mode_off">Unicode mode: OFF</string>
+    <string name="unicode_translate_empty">No text to translate</string>
+    <string name="unicode_translate_working">Translating…</string>
+    <string name="unicode_translate_changed">Text changed, translation cancelled</string>
+    <string name="unicode_translate_failed">Translation failed: %s</string>
     <string name="unicode_settings_title">Unicode Keyboard</string>
-    <string name="unicode_settings_summary">Chế độ Unicode, kiểu bỏ dấu, dịch, tuỳ chỉnh ký tự</string>
-    <string name="unicode_mode_summary">Đổi chữ và số thành ký tự lạ khi gõ. Tắt tự sửa khi bật.</string>
-    <string name="unicode_old_tone_title">Bỏ dấu kiểu cũ</string>
-    <string name="unicode_old_tone_summary">hòa, thủy thay vì hoà, thuỷ</string>
-    <string name="unicode_translate_header">Dịch Anh ↔ Việt (offline)</string>
-    <string name="unicode_translate_models_ready">Gói dịch đã sẵn sàng. Chạm để xoá.</string>
-    <string name="unicode_translate_models_missing">Chưa tải gói dịch (~30 MB). Chạm để tải.</string>
-    <string name="unicode_translate_downloading">Đang tải gói dịch…</string>
-    <string name="unicode_chars_header">Tuỳ chỉnh ký tự Unicode</string>
-    <string name="unicode_chars_default2">Nạp bộ Default 2 (small caps)</string>
-    <string name="unicode_chars_reset">Khôi phục mặc định</string>
-    <string name="unicode_chars_custom_hint">Ký tự tuỳ ý</string>
-    <string name="space_label_vi">dấu cách</string>
-    <string name="space_label_en">space</string>
-    <string name="unicode_chars_use_default">Mặc định</string>
-    <string name="theme_name_ios_light" tools:keep="@string/theme_name_ios_light">iOS sáng</string>
-    <string name="theme_name_ios_dark" tools:keep="@string/theme_name_ios_dark">iOS tối</string>
+    <string name="unicode_settings_summary">Unicode mode, tone style, translation, character customization</string>
+    <string name="unicode_mode_summary">Type look-alike Unicode characters instead of letters and digits. Auto-correction is paused while it is on.</string>
+    <string name="unicode_old_tone_title">Old tone style</string>
+    <string name="unicode_old_tone_summary">hòa, thủy instead of hoà, thuỷ</string>
+    <string name="unicode_translate_header">Offline translation EN ↔ VI</string>
+    <string name="unicode_translate_models_ready">Translation models are ready. Tap to delete.</string>
+    <string name="unicode_translate_models_missing">Translation models not downloaded (~30 MB). Tap to download.</string>
+    <string name="unicode_translate_downloading">Downloading translation models…</string>
+    <string name="unicode_chars_header">Unicode character customization</string>
+    <string name="unicode_chars_default2">Load \"Default 2\" (small caps)</string>
+    <string name="unicode_chars_reset">Reset to defaults</string>
+    <string name="unicode_chars_custom_hint">Custom text</string>
+    <string name="unicode_chars_use_default">Default</string>
+    <string name="space_label">space</string>
+    <string name="return_label">return</string>
+    <string name="theme_name_ios_light" tools:keep="@string/theme_name_ios_light">iOS light</string>
+    <string name="theme_name_ios_dark" tools:keep="@string/theme_name_ios_dark">iOS dark</string>
 </resources>

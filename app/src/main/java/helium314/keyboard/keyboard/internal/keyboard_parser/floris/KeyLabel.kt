@@ -6,6 +6,7 @@ import helium314.keyboard.keyboard.internal.KeyboardCodesSet
 import helium314.keyboard.keyboard.internal.KeyboardIconsSet
 import helium314.keyboard.keyboard.internal.KeyboardParams
 import helium314.keyboard.keyboard.internal.keyboard_parser.floris.KeyData.Companion.replaceIconWithLabelIfNoDrawable
+import helium314.keyboard.latin.R
 import helium314.keyboard.latin.settings.Settings
 import helium314.keyboard.latin.utils.InputTypeUtils
 import helium314.keyboard.latin.utils.ToolbarKey
@@ -28,6 +29,7 @@ object KeyLabel {
     const val PERIOD = "period"
     const val COMMA = "comma"
     const val SPACE = "space"
+    const val IOS_RETURN = "ios_return"
     const val ZWNJ = "zwnj"
     const val CURRENCY = "$$$"
     const val CURRENCY1 = "$$$1"
@@ -104,6 +106,7 @@ object KeyLabel {
             PERIOD -> getPeriodLabel(params)
             SPACE -> getSpaceLabel(params)
             ACTION -> "${getActionKeyLabel(params)}|${getActionKeyCode(params)}"
+            IOS_RETURN -> Settings.getCurrentContext()?.getString(R.string.return_label) ?: "return"
             DELETE -> "!icon/delete_key|!code/key_delete"
             SHIFT -> "${getShiftLabel(params)}|!code/key_shift"
             COM -> params.mLocaleKeyboardInfos.tlds.first()
