@@ -14,8 +14,8 @@ android {
         applicationId = "com.hieuday88.unicode"
         minSdk = 21
         targetSdk = 37
-        versionCode = 3000
-        versionName = "3.0.0"
+        versionCode = 1
+        versionName = "1.0.0"
         ndk {
             abiFilters.clear()
             abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
