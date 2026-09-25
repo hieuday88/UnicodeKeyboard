@@ -1,155 +1,117 @@
+<p align="center">
+  <img src="unicode_keyboard_icon_512.png" alt="Unicode Keyboard icon" width="128">
+</p>
+
 # Unicode Keyboard
-Bàn phím Android kiểu iOS cho người Việt, fork từ [HeliBoard](https://github.com/HeliBorg/HeliBoard) (GPL-3.0).
-Package: `com.hieuday88.unicode`.
 
-## Tính năng riêng
-- **Gõ Telex tiếng Việt** (subtype "Tiếng Việt (Telex)"), tự tắt trong ô mật khẩu/email/URL; tuỳ chọn bỏ dấu kiểu cũ (hòa) / mới (hoà).
-- **Chế độ Unicode**: đổi chữ/số sang ký tự trông giống (ɑ ϵ ᗅ…), bật/tắt bằng nút trên toolbar; tuỳ chỉnh từng ký tự, preset "Default 2" (small caps).
-- **Dịch Anh ↔ Việt offline** (ML Kit): dịch vùng chọn hoặc toàn bộ chữ trước con trỏ; tự nhận chiều dịch.
-- **Giao diện iOS**: theme iOS sáng/tối theo hệ thống, phím bo góc có bóng, hàng dưới `123 · 🌐 · 😀 · space · return`, trang 123 và #+= theo iOS, haptic, giữ phím ra dấu, double-space ra dấu chấm, vuốt space di con trỏ.
+An iOS-style Android keyboard for Vietnamese and English, with built-in Telex typing, a look-alike
+"Unicode" character mode and offline English ↔ Vietnamese translation.
 
-Cài đặt riêng nằm ở mục **Unicode Keyboard** trong màn hình cài đặt.
+It is a fork of [HeliBoard](https://github.com/HeliBorg/HeliBoard) (itself based on AOSP / OpenBoard) and the
+successor of the CMkey keyboard.
+
+<p align="center">
+  <img src="docs/screenshots/keyboard_vi.png" alt="Vietnamese keyboard" width="45%">
+  <img src="docs/screenshots/keyboard_en.png" alt="English keyboard" width="45%">
+</p>
+
+## Features
+
+### Vietnamese Telex
+- "Tiếng Việt (Telex)" layout: `tieengs vieetj` → `tiếng việt`, `dduwowcj` → `được`, `nguwowif` → `người`
+- Double a tone or hook key to undo it (`ass` → `as`, `caaa` → `caa`)
+- Tone placement option: new style (`hoà`, `thuỷ`) or old style (`hòa`, `thủy`)
+- Automatically disabled in password, email and URL fields
+- Vietnamese and English layouts are enabled by default; switch with the 🌐 key
+
+### Unicode mode
+- Replaces letters and digits with look-alike Unicode characters while you type
+  (`hello` → `ҥϵℓℓσ`), handy for game names and chats
+- Toggle with the ⚡ button on the toolbar (off by default); auto-correction is paused while it is on
+- Per-character customization with a catalog of variants for every letter, a free-text override,
+  a "Default 2" preset (small caps) and a reset button
+
+### Offline translation
+- 文A button on the toolbar translates the selection, or all text before the cursor, and replaces it
+- Direction is detected automatically: text with Vietnamese letters is translated to English,
+  anything else to Vietnamese
+- Uses on-device Google ML Kit models (~30 MB, downloaded on first use; manage them in settings)
+
+### iOS look and feel
+- iOS layouts: `123 · 🌐 · 😀 · space · return` bottom row, iOS 123 and #+= symbol pages
+- iOS light and dark themes that follow the system, rounded keys with a bottom shadow
+- Self-drawn iOS-like icons (shift, caps lock, delete, emoji, globe) and the Inter font
+- Space label "dấu cách" / "space" depending on the layout, "Nhập" return key
+- Key pop-up preview, haptic feedback, double-space period, auto-capitalization,
+  long-press accents (`a` → `à á ả ã ạ ă â…`), swipe on space to move the cursor, swipe on delete to select
+
+### Inherited from HeliBoard
+Suggestions and auto-correction with dictionaries, clipboard history, emoji palette, one-handed and split
+modes, custom layouts and colors, backup and restore, no ads and no tracking.
+
+<p align="center">
+  <img src="docs/screenshots/settings.png" alt="Settings" width="70%">
+</p>
+
+## Settings
+
+Open the app (or ⚙ on the keyboard toolbar) → **Unicode Keyboard**:
+
+| Setting | Description |
+|---|---|
+| Unicode mode | Same as the ⚡ toolbar button |
+| Old tone style | `hòa` instead of `hoà` |
+| Translate EN ↔ VI | Download or delete the offline translation models |
+| Unicode character customization | Pick a variant for each character, load "Default 2" or reset |
+
+A custom font (for example a font you own) can be selected under **Appearance → Custom font**.
 
 ## Build
+
+Requirements: JDK 17+ (the JBR bundled with Android Studio works) and the Android SDK
+(compileSdk 37, NDK 28 — Gradle downloads missing components).
+
+```sh
+./gradlew assembleDebugNoMinify   # fast debug build
+./gradlew assembleRelease         # minified release build
+./gradlew testDebugUnitTest --tests "helium314.keyboard.unicode.*"
 ```
-./gradlew assembleRelease   # hoặc assembleDebugNoMinify
+
+APKs are written to `app/build/outputs/apk/<variant>/UnicodeKeyboard_<version>-<variant>.apk`.
+
+### Release signing
+`assembleRelease` signs the APK when `../signing/keystore.properties` exists next to the repository folder:
+
+```properties
+storeFile=unicode-keyboard-release.jks
+storePassword=...
+keyAlias=unicodekeyboard
+keyPassword=...
 ```
-Cần JDK 17+ và Android SDK (compileSdk 37, NDK 28).
 
----
-Phần dưới là README gốc của HeliBoard.
+Keep the keystore out of the repository and back it up: updates must be signed with the same key.
 
-# HeliBoard
-HeliBoard is a privacy-conscious and customizable open-source keyboard, based on AOSP / OpenBoard.
+## Project layout
 
-## Table of Contents
+| Path | Content |
+|---|---|
+| `app/src/main/java/helium314/keyboard/unicode/` | Telex engine, Unicode mode engine, character catalog, translator |
+| `app/src/main/java/helium314/keyboard/event/TelexCombiner.kt` | Hooks Telex into the input pipeline |
+| `app/src/main/java/helium314/keyboard/settings/screens/UnicodeKeyboardScreen.kt` | Unicode Keyboard settings screen |
+| `app/src/main/assets/layouts/` | iOS-style functional and symbol layouts |
+| `app/src/test/java/helium314/keyboard/unicode/` | Telex unit tests |
 
-- [Features](#features)
-- [Contributing](#contributing-)
-   * [Reporting Issues](#reporting-issues)
-   * [Translations](#translations)
-   * [To Community](#to-community)
-   * [Code Contribution](CONTRIBUTING.md)
-- [Links](#links)
-- [License](#license)
-- [Credits](#credits)
-  * [Funding](#funding)
+## License
 
-# Features
-<ul>
-  <li>Add dictionaries for suggestions and spell check</li>
-  <ul>
-    <li>build your own, or get them  <a href="https://codeberg.org/Helium314/aosp-dictionaries#dictionaries">here</a> (quality may vary)</li>
-    <li>additional dictionaries for emojis or scientific symbols can be used to provide suggestions (similar to "emoji search")</li>
-    <li>note that for Korean layouts, suggestions only work using <a href="https://github.com/openboard-team/openboard/commit/83fca9533c03b9fecc009fc632577226bbd6301f">this dictionary</a>, the tools in the dictionary repository are not able to create working dictionaries</li>
-  </ul>
-  <li>Customize keyboard themes (style, colors and background image)</li>
-  <li>Emoji search (inline and separate, requires <a href="https://codeberg.org/Helium314/aosp-dictionaries">emoji dictionary</a>)</li>
-  <ul>
-    <li>can follow the system's day/night setting on Android 10+ (and on some versions of Android 9)</li>
-    <li>can follow dynamic colors for Android 12+</li>
-  </ul>
-  <li>Customize keyboard <a href="https://github.com/HeliBorg/HeliBoard/blob/main/layouts.md">layouts</a> (only available when disabling <i>use system languages</i>)</li>
-  <li>Customize special layouts, like symbols, number,  or functional key layout</li>
-  <li>Multilingual typing</li>
-  <li>Glide typing (<i>only with closed source library</i> ☹️)</li>
-  <ul>
-    <li>library not included in the app, as there is no compatible open source library available</li>
-    <li>can be extracted from GApps packages ("<i>swypelibs</i>"), or downloaded <a href="https://github.com/erkserkserks/openboard/tree/46fdf2b550035ca69299ce312fa158e7ade36967/app/src/main/jniLibs">here</a> (click on the file and then "raw" or the tiny download button)</li>
-  </ul>
-  <li>Clipboard history</li>
-  <li>One-handed mode</li>
-  <li>Split keyboard</li>
-  <li>Number pad</li>
-  <li>Backup and restore your settings and learned word / history data</li>
-</ul>
+Unicode Keyboard is licensed under the [GNU General Public License v3.0](LICENSE), like HeliBoard.
+Parts inherited from AOSP are under the [Apache License 2.0](LICENSE-Apache-2.0).
 
-For [FAQ](https://github.com/HeliBorg/HeliBoard/wiki/FAQ), [hidden features](https://github.com/HeliBorg/HeliBoard/wiki/9.-Hidden-features) and more information about the app and features, please visit the [wiki](https://github.com/HeliBorg/HeliBoard/wiki)
+The bundled [Inter](https://github.com/rsms/inter) font is licensed under the
+[SIL Open Font License 1.1](INTER_FONT_LICENSE.txt).
+Apple's SF fonts and SF Symbols are **not** included; the iOS-like icons are original vector drawings.
 
-# Contributing ❤
+## Credits
 
-## Reporting Issues
-
-Whether you encountered a bug, or want to see a new feature in HeliBoard, you can contribute to the project by opening a new issue [here](https://github.com/HeliBorg/HeliBoard/issues). Your help is always welcome!
-
-Before opening a new issue, be sure to check the following:
- - **Does the issue already exist?** Make sure a similar issue has not been reported by browsing [existing issues](https://github.com/HeliBorg/HeliBoard/issues?q=). Please search open and closed issues. In case of feature requests you could also check the [FAQ](https://github.com/HeliBorg/HeliBoard/wiki/FAQ) and [hidden features](https://github.com/HeliBorg/HeliBoard/wiki/9.-Hidden-features).
- - **Is the issue still relevant?** Make sure your issue is not already fixed in the latest version of HeliBoard.
- - **Is it a single topic?** If you want to suggest multiple things, open multiple issues.
- - **Did you use the issue template?** It is important to make life of our kind contributors easier by avoiding issues that miss key information to their resolution.
- - **Is it written by a human?** Do not use LLMs or similar to generate issues. Having LLMs help with translation or similar is acceptable, but must be disclosed. See also [AI_USAGE.md](AI_USAGE.md)
-Note that issues that that ignore part of the issue template will likely get treated with very low priority, as often they are needlessly hard to read or understand (e.g. huge screenshots, not providing a proper description, or addressing multiple topics). Blatant violation of the guidelines may result in the issue getting closed.
-
-If you're interested, you can read the following useful text about effective bug reporting (a bit longer read): https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
-
-## Translations
-Translations can be added using [Weblate](https://translate.codeberg.org/projects/heliboard/). You will need an account to update translations and add languages. Add the language you want to translate to in Languages -> Manage translated languages in the top menu bar.
-Updating translations in a PR will not be accepted, as it may cause conflicts with Weblate translations.
-
-Some notes on translations
-* when translating metadata, translating the changelogs is rather useless. It's available as it was requested by translators.
-* the `hidden_features_message` is horrible to translate with Weblate, and serves little benefit as it's just a copy of what's already in the wiki: https://github.com/HeliBorg/HeliBoard/wiki/9.-Hidden-features. It's been made available in the app on user request/contribution.
-
-## To Community
-There is the [discussions on GitHub](https://github.com/HeliBorg/HeliBoard/discussions), or if you prefer a more open network there is [Lemmy](https://lemmy.world/c/Heliboard).
-You can share your themes, layouts and dictionaries with other people:
-* Themes can be saved and loaded using the menu on top-right in the _adjust colors_ screen
-  * you can share custom colors in a separate [discussion section](https://github.com/HeliBorg/HeliBoard/discussions/categories/custom-colors)
-  * there are theme collections available at [Star-Trowa/heliboard-themes](https://github.com/Star-Trowa/heliboard-themes) and [PickleHik3/droid-tings](https://github.com/PickleHik3/droid-tings)
-* Custom keyboard layouts are text files whose content you can edit, copy and share
-  * this applies to main keyboard layouts and to special layouts adjustable in advanced settings
-  * see [layouts.md](layouts.md) for details
-  * you can share custom layouts in a separate [discussion section](https://github.com/HeliBorg/HeliBoard/discussions/categories/custom-layout)
-  * [Roccobot's Layout Maker](https://roccobot.github.io/HeliBoard-RLM/) is a browser-based editor for json layout files
-* Creating dictionaries is a little more work
-  * first you will need a wordlist, as described [here](https://codeberg.org/Helium314/aosp-dictionaries/src/branch/main/wordlists/sample.combined) and in the repository readme
-  * the you need to compile the dictionary using [external tools](https://github.com/remi0s/aosp-dictionary-tools)
-  * the resulting file (and ideally the wordlist too) can be shared with other users
-  * note that there will not be any further dictionaries added to this app, but you can add dictionaries to the [dictionaries repository](https://codeberg.org/Helium314/aosp-dictionaries)
-
-## Code Contribution
-See [Contribution Guidelines](CONTRIBUTING.md)
-
-# Links
-* Info
-  * [Wiki](https://github.com/HeliBorg/HeliBoard/wiki), including FAQ, help on customizing layouts, and gesture data gathering
-  * [Layout documentation](layouts.md) (more technical info regarding layout customization)
-  * [For creating custom dictionaries](https://codeberg.org/Helium314/aosp-dictionaries#wordlist-information) (see also top of the linked readme)
-* Community
-  * [Lemmy](https://lemmy.world/c/Heliboard)
-  * [Reddit](https://www.reddit.com/r/HeliBoard)
-  * GitHub [discussions](https://github.com/HeliBorg/HeliBoard/discussions)
-* Other
-  * [Translations](https://translate.codeberg.org/projects/heliboard/)
-  * [Dictionaries](https://codeberg.org/Helium314/aosp-dictionaries)
-  * [k3lp](https://codeberg.org/k3lp/k3lp) is a WIP library for keyboard layout parsing that will be implemented in HeliBoard when ready (created by [FlorisBoard](https://github.com/florisboard/florisboard/) maintainers)
-  * [swipe-o-scope](https://codeberg.org/eclexic/swipe-o-scope) for visualizing gesture data as created when using gesture data gathering
-
-# License
-
-HeliBoard (as a fork of OpenBoard) is licensed under GNU General Public License v3.0.
-
- > Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.
-
-See repo's [LICENSE](/LICENSE) file.
-
-Since the app is based on Apache 2.0 licensed AOSP Keyboard, an [Apache 2.0](LICENSE-Apache-2.0) license file is provided.
-The icon is licensed under [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). A [license file](LICENSE-CC-BY-SA-4.0) is also included.
-
-# Credits
-- Icon by [Fabian OvrWrt](https://github.com/FabianOvrWrt) with contributions from [The Eclectic Dyslexic](https://github.com/the-eclectic-dyslexic)
-- [OpenBoard](https://github.com/openboard-team/openboard)
-- [AOSP Keyboard](https://android.googlesource.com/platform/packages/inputmethods/LatinIME/)
-- [LineageOS](https://review.lineageos.org/admin/repos/LineageOS/android_packages_inputmethods_LatinIME)
-- [Simple Keyboard](https://github.com/rkkr/simple-keyboard)
-- [Indic Keyboard](https://gitlab.com/indicproject/indic-keyboard)
-- [FlorisBoard](https://github.com/florisboard/florisboard/)
-- Our [contributors](https://github.com/HeliBorg/HeliBoard/graphs/contributors)
-
-## Funding
-
-This project is funded through [NGI Mobifree Fund](https://nlnet.nl/mobifree), a fund established by [NLnet](https://nlnet.nl) with financial support from the European Commission's [Next Generation Internet](https://ngi.eu) program. Learn more at the [NLnet project page](https://nlnet.nl/project/GestureTyping).
-
-[<img src="https://nlnet.nl/logo/banner.png" alt="NLnet foundation logo" width="20%" />](https://nlnet.nl)
-
-Further the project benefits from donations provided by many users (thank you all!).
+- [HeliBoard](https://github.com/HeliBorg/HeliBoard) and its contributors, [OpenBoard](https://github.com/openboard-team/openboard) and AOSP
+- [Inter](https://rsms.me/inter/) by Rasmus Andersson
+- [Google ML Kit](https://developers.google.com/ml-kit/language/translation) for on-device translation
