@@ -6,6 +6,8 @@
 
 package helium314.keyboard.keyboard;
 
+import helium314.keyboard.unicode.IosBottomBar;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -572,6 +574,7 @@ public final class KeyboardSwitcher {
         mSuggestionStripView = mCurrentInputView.findViewById(R.id.suggestion_strip_view);
         mStripContainer = mCurrentInputView.findViewById(R.id.strip_container);
         mBackgroundGatheringIndicator = mCurrentInputView.findViewById(R.id.backgroundGatheringIndicator);
+        IosBottomBar.INSTANCE.setup(mCurrentInputView, mLatinIME.mKeyboardActionListener);
 
         prefs.registerOnSharedPreferenceChangeListener(mSuggestionStripView);
         prefs.registerOnSharedPreferenceChangeListener(mClipboardHistoryView);
@@ -769,6 +772,7 @@ public final class KeyboardSwitcher {
             Keyboard newKeyboard = mKeyboardLayoutSet.getKeyboard(keyboardElement);
             keyboardView.setKeyboard(newKeyboard);
             mCurrentInputView.setKeyboardTopPadding(newKeyboard.mTopPadding);
+            IosBottomBar.INSTANCE.refresh(mCurrentInputView);
             keyboardView.setKeyPreviewPopupEnabled(currentSettingsValues.mKeyPreviewPopupOn);
             keyboardView.updateShortcutKey(mRichImm.isShortcutImeReady());
             boolean subtypeChanged = (oldKeyboard == null) || !newKeyboard.mId.getSubtype().equals(oldKeyboard.mId.getSubtype());

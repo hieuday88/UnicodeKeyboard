@@ -74,6 +74,37 @@
             />
     </helium314.keyboard.latin.KeyboardWrapperView>
     <LinearLayout
+        android:id="@+id/ios_bottom_bar"
+        android:orientation="horizontal"
+        android:layoutDirection="ltr"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ios_bottom_bar_height">
+        <ImageButton
+            android:id="@+id/ios_globe_button"
+            android:contentDescription="@string/spoken_description_language_switch"
+            android:src="@drawable/ic_ios_globe"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:padding="9dp"
+            android:layout_width="@dimen/ios_bottom_bar_height"
+            android:layout_height="@dimen/ios_bottom_bar_height" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <ImageButton
+            android:id="@+id/ios_mic_button"
+            android:contentDescription="@string/voice"
+            android:src="@drawable/ic_ios_mic"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:padding="9dp"
+            android:layout_width="@dimen/ios_bottom_bar_height"
+            android:layout_height="@dimen/ios_bottom_bar_height" />
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/float_handle_container"
         android:orientation="horizontal"
         android:visibility="gone"
